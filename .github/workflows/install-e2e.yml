@@ -320,6 +320,8 @@ jobs:
     needs: generate-matrix
     strategy:
       fail-fast: false
+      # PROBE (not for merge): leave room in the org's standard-runner concurrency.
+      max-parallel: 20
       matrix: ${{ fromJSON(needs.generate-matrix.outputs.windows) }}
     uses: ./.github/workflows/install-e2e-windows-run.yml
     with:
